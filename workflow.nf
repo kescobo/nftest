@@ -12,9 +12,11 @@ process foo {
   tuple val(x), path(p)
 
   output:
-  path "${x}_new.txt"
+  path "${x}_new.txt.gz"
   
   """
+  echo $p
   cat $p > ${x}_new.txt
+  gzip -k ${x}_new.txt
   """
 }
